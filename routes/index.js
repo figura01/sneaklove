@@ -6,7 +6,9 @@ router.get("/", (req, res) => {
 });
 
 router.get("/sneakers/:cat", (req, res) => {
-  res.send("bar");
+
+
+  res.render("products");
 });
 
 router.get("/one-product/:id", (req, res) => {
