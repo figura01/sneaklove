@@ -22,7 +22,9 @@ app.set("view engine", "hbs");
 app.set("views", __dirname + "/views");
 app.use(express.static("public"));
 hbs.registerPartials(__dirname + "/views/partials");
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({
+  extended: false
+}));
 app.use(express.json());
 app.use(cookieParser());
 
@@ -30,7 +32,9 @@ app.use(cookieParser());
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
-    cookie: { maxAge: 60000 }, // in millisec
+    cookie: {
+      maxAge: 60000
+    }, // in millisec
     store: new MongoStore({
       mongooseConnection: mongoose.connection, // you can store session infos in mongodb :)
       ttl: 24 * 60 * 60, // 1 day
