@@ -2,7 +2,7 @@ require("dotenv").config();
 const Tag = require("../models/Tag");
 const mongoose = require("mongoose");
 
-const Tags = [
+const tags = [
   {
     label: "Street",
   },

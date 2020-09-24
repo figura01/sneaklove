@@ -2,8 +2,7 @@ require("dotenv").config();
 const User = require("../models/User");
 const mongoose = require("mongoose");
 
-const Users = [
-  {
+const users = [{
     name: "Remy",
     lastname: "LaFourmi",
     email: "RemyLF@gmail.mail",
