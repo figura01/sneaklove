@@ -2,7 +2,7 @@ require("dotenv").config();
 const Tag = require("../models/Tag");
 const mongoose = require("mongoose");
 
-const Tags = [
+const tags = [
   {
     label: "Street",
   },
@@ -15,7 +15,7 @@ const Tags = [
 ];
 
 mongoose
-  .connect(process.env.MONGO_URI, {
+  .connect("mongodb://localhost:27017/Sneakers-database", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
