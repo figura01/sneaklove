@@ -5,14 +5,12 @@ router.get("/", (req, res) => {
   res.render("index");
 });
 
-router.get("/sneakers/:cat", (req, res) => {
-
-
-  res.render("products");
+router.get("/home", (req, res) => {
+  res.render("index");
 });
 
-router.get("/one-product/:id", (req, res) => {
-  res.send("baz");
+router.get("/sneakers/:cat", (req, res) => {
+  res.render("products_manage.hbs");
 });
 
 router.get("/signup", (req, res) => {
@@ -23,5 +21,8 @@ router.get("/signin", (req, res) => {
   res.send("love");
 });
 
+router.get("/one-product/:id", (req, res) => {
+  res.send("baz");
+});
 
 module.exports = router;
