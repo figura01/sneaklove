@@ -11,6 +11,7 @@ router.get("/home", (req, res) => {
 });
 
 router.get("/sneakers/:cat", async (req, res) => {
+
   console.log('paramas', req.params.cat);
 
   const parmaCategorie = req.params.cat;
@@ -36,6 +37,14 @@ router.get("/signup", (req, res) => {
 
 router.get("/signin", (req, res) => {
   res.render("signin");
+});
+
+router.get("/signin", (req, res) => {
+  res.render("signin.hbs");
+});
+
+router.get("/signup", (req, res) => {
+  res.render("signup.hbs");
 });
 
 router.get("/one-product/:id", (req, res) => {
