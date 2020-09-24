@@ -8,9 +8,15 @@ router.get("/signin", async (req, res, next) => {
   res.render("signin.hbs");
 });
 
-router.post("/signin", async (req, res, next) => {
-  const { email, password } = req.body;
-  const foundUser = await User.findOne({ email: email });
+router.post("auth/signin", async (req, res, next) => {
+  console.log('sign in', req.body);
+  const {
+    email,
+    password
+  } = req.body;
+  const foundUser = await User.findOne({
+    email: email
+  });
   console.log(foundUser);
 
   if (!foundUser) {
@@ -22,7 +28,9 @@ router.post("/signin", async (req, res, next) => {
       req.flash("error", "Invalid Credentials");
       res.redirect("signin.hbs");
     } else {
-      const userDocument = { ...foundUser };
+      const userDocument = {
+        ...foundUser
+      };
       console.log(userDocument);
       const userObject = foundUser.toObject();
       delete userObject.password;
@@ -34,18 +42,23 @@ router.post("/signin", async (req, res, next) => {
 });
 
 router.post("/signup", async (req, res, next) => {
+  console.log('sign UP', req.body);
   try {
     const newUser = req.body;
-
-    const foundUser = await User.findOne({ email: newUser.email });
-
+    console.log('newUser: ', newUser);
+    const foundUser = await User.findOne({
+      email: newUser.email
+    });
+    console.log(foundUser);
     if (foundUser) {
-      res.render("signup.hbs", { error: "Email already taken" });
+      res.render("signup", {
+        error: "Email already taken"
+      });
     } else {
       const hashedPassword = bcrypt.hashSync(newUser.password, salt);
       newUser.password = hashedPassword;
       const user = await User.create(newUser);
-      res.redirect("signin.hbs");
+      res.redirect("signin");
     }
   } catch (error) {
     next(error);

@@ -18,15 +18,19 @@ const logger = require("morgan");
 app.use(logger("dev"));
 
 // initial config
-app.set("view engine", "hbs");
 app.set("views", __dirname + "/views");
-app.use(express.static("public"));
+app.set("view engine", "hbs");
 hbs.registerPartials(__dirname + "/views/partials");
+
+app.use(express.static("public"));
+
+
+app.use(express.json());
 app.use(express.urlencoded({
   extended: false
 }));
-app.use(express.json());
 app.use(cookieParser());
+
 
 // SESSION SETUP
 app.use(
@@ -61,5 +65,5 @@ app.use(require("./middlewares/exposeFlashMessage"));
 
 // routers
 app.use("/", require("./routes/index"));
-
+app.use("/auth", require("./routes/auth"));
 module.exports = app;
