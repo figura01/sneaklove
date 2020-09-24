@@ -14,8 +14,6 @@ const sneakerSchema = new Schema({
     id_tags: { type: Schema.Types.ObjectId, ref: "Tag" }
 });
 
-//id_tags: [ObjectId]
-
 const Sneaker = mongoose.model("Sneaker", sneakerSchema);
 
 module.exports = Sneaker;

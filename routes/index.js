@@ -24,15 +24,18 @@ router.get("/sneakers/:cat", async (req, res) => {
   }
 
   console.log(sneakers);
-  res.render("products.hbs", {sneakers, category: req.params.cat});
+  res.render("products.hbs", {
+    sneakers,
+    category: req.params.cat
+  });
 });
 
 router.get("/signup", (req, res) => {
-  res.send("sneak");
+  res.render("signup");
 });
 
 router.get("/signin", (req, res) => {
-  res.send("love");
+  res.render("signin");
 });
 
 router.get("/one-product/:id", (req, res) => {
