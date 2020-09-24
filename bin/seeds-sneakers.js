@@ -52,7 +52,7 @@ const sneakers = [{
         size: 18,
         description: 'Maecenas ante quam, ultricies at ex quis, varius rutrum mi. Vivamus nisi massa, lobortis semper purus a, fermentum consequat nunc. orem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque condimentum urna eu arcu facilisis, non egestas odio sodales. Morbi ut dignissim arcu. Etiam magna lorem, ultricies eget orci ut, viverra convallis nibh',
         price: 80,
-        category: 'women',
+        category: 'kids',
         id_tags: '5f6cb3facfd5c60aefe5d229'
     },
     {
@@ -61,7 +61,7 @@ const sneakers = [{
         size: 20,
         description: 'Maecenas ante quam, ultricies at ex quis, varius rutrum mi. Vivamus nisi massa, lobortis semper purus a, fermentum consequat nunc. orem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque condimentum urna eu arcu facilisis, non egestas odio sodales. Morbi ut dignissim arcu. Etiam magna lorem, ultricies eget orci ut, viverra convallis nibh',
         price: 90,
-        category: 'women',
+        category: 'kids',
         id_tags: '5f6cb3facfd5c60aefe5d228'
     }
 ];
