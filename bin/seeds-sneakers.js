@@ -1,6 +1,11 @@
 require("dotenv").config();
 const Sneaker = require("../models/Sneaker");
 const mongoose = require("mongoose");
+/*
+{ _id: 5f6cb3facfd5c60aefe5d228, label: 'Street', __v: 0 },
+  { _id: 5f6cb3facfd5c60aefe5d229, label: 'Sports', __v: 0 },
+  { _id: 5f6cb3facfd5c60aefe5d22a, label: 'Urban', __v: 0 }
+*/
 
 const sneakers = [
   {
@@ -53,7 +58,7 @@ const sneakers = [
     description:
       "Maecenas ante quam, ultricies at ex quis, varius rutrum mi. Vivamus nisi massa, lobortis semper purus a, fermentum consequat nunc. orem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque condimentum urna eu arcu facilisis, non egestas odio sodales. Morbi ut dignissim arcu. Etiam magna lorem, ultricies eget orci ut, viverra convallis nibh",
     price: 80,
-    category: "women",
+    category: "kids",
     id_tags: 2,
   },
   {
@@ -63,13 +68,13 @@ const sneakers = [
     description:
       "Maecenas ante quam, ultricies at ex quis, varius rutrum mi. Vivamus nisi massa, lobortis semper purus a, fermentum consequat nunc. orem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque condimentum urna eu arcu facilisis, non egestas odio sodales. Morbi ut dignissim arcu. Etiam magna lorem, ultricies eget orci ut, viverra convallis nibh",
     price: 90,
-    category: "women",
+    category: "kids",
     id_tags: 2,
   },
 ];
 
 mongoose
-  .connect("mongodb://localhost:27017/Sneakers-database", {
+  .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })

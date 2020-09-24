@@ -15,7 +15,7 @@ const tags = [
 ];
 
 mongoose
-  .connect("mongodb://localhost:27017/Sneakers-database", {
+  .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
