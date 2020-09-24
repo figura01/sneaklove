@@ -1,6 +1,11 @@
 require("dotenv").config();
 const Sneaker = require("../models/Sneaker");
 const mongoose = require("mongoose");
+/*
+{ _id: 5f6cb3facfd5c60aefe5d228, label: 'Street', __v: 0 },
+  { _id: 5f6cb3facfd5c60aefe5d229, label: 'Sports', __v: 0 },
+  { _id: 5f6cb3facfd5c60aefe5d22a, label: 'Urban', __v: 0 }
+*/
 
 const sneakers = [{
         name: 'Sneaker 1 Men',
@@ -9,7 +14,7 @@ const sneakers = [{
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque condimentum urna eu arcu facilisis, non egestas odio sodales. Morbi ut dignissim arcu. Etiam magna lorem, ultricies eget orci ut, viverra convallis nibh',
         price: 200,
         category: 'men',
-        id_tags: 1
+        id_tags: '5f6cb3facfd5c60aefe5d228'
     },
 
     {
@@ -19,7 +24,7 @@ const sneakers = [{
         description: 'Maecenas ante quam, ultricies at ex quis, varius rutrum mi. Vivamus nisi massa, lobortis semper purus a, fermentum consequat nunc. orem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque condimentum urna eu arcu facilisis, non egestas odio sodales. Morbi ut dignissim arcu. Etiam magna lorem, ultricies eget orci ut, viverra convallis nibh',
         price: 120,
         category: 'men',
-        id_tags: 2
+        id_tags: '5f6cb3facfd5c60aefe5d22a'
     },
 
     {
@@ -29,7 +34,7 @@ const sneakers = [{
         description: 'Maecenas ante quam, ultricies at ex quis, varius rutrum mi. Vivamus nisi massa, lobortis semper purus a, fermentum consequat nunc. orem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque condimentum urna eu arcu facilisis, non egestas odio sodales. Morbi ut dignissim arcu. Etiam magna lorem, ultricies eget orci ut, viverra convallis nibh',
         price: 150,
         category: 'women',
-        id_tags: 3
+        id_tags: '5f6cb3facfd5c60aefe5d229'
     },
     {
         name: 'Sneake 2 women',
@@ -38,7 +43,7 @@ const sneakers = [{
         description: 'Maecenas ante quam, ultricies at ex quis, varius rutrum mi. Vivamus nisi massa, lobortis semper purus a, fermentum consequat nunc. orem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque condimentum urna eu arcu facilisis, non egestas odio sodales. Morbi ut dignissim arcu. Etiam magna lorem, ultricies eget orci ut, viverra convallis nibh',
         price: 80,
         category: 'women',
-        id_tags: 2
+        id_tags: '5f6cb3facfd5c60aefe5d22a'
     },
 
     {
@@ -48,7 +53,7 @@ const sneakers = [{
         description: 'Maecenas ante quam, ultricies at ex quis, varius rutrum mi. Vivamus nisi massa, lobortis semper purus a, fermentum consequat nunc. orem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque condimentum urna eu arcu facilisis, non egestas odio sodales. Morbi ut dignissim arcu. Etiam magna lorem, ultricies eget orci ut, viverra convallis nibh',
         price: 80,
         category: 'women',
-        id_tags: 2
+        id_tags: '5f6cb3facfd5c60aefe5d229'
     },
     {
         name: 'Sneake 2 kid',
@@ -57,7 +62,7 @@ const sneakers = [{
         description: 'Maecenas ante quam, ultricies at ex quis, varius rutrum mi. Vivamus nisi massa, lobortis semper purus a, fermentum consequat nunc. orem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque condimentum urna eu arcu facilisis, non egestas odio sodales. Morbi ut dignissim arcu. Etiam magna lorem, ultricies eget orci ut, viverra convallis nibh',
         price: 90,
         category: 'women',
-        id_tags: 2
+        id_tags: '5f6cb3facfd5c60aefe5d228'
     }
 ];
 
