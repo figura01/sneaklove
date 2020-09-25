@@ -6,26 +6,19 @@ const exposeFlashMessage = require("../middlewares/exposeFlashMessage");
 
 const salt = 10;
 
-<<<<<<< HEAD
-router.post("auth/signin", async (req, res, next) => {
-
-  console.log('sign in', req.body);
+router.post("/signin", async (req, res, next) => {
+  console.log("sign in", req.body);
   const {
     email,
     password
   } = req.body;
-=======
-router.post("/signin", async (req, res, next) => {
-  console.log("sign in", req.body);
-  const { email, password } = req.body;
->>>>>>> cb6f1aa32231c4cf095af1341a099df60d3471cf
   const foundUser = await User.findOne({
     email: email,
   });
   console.log(foundUser);
 
   if (!foundUser) {
-    req.flash("warning", "Invalid credentials");
+    req.flash("error", "Invalid credentials");
     res.redirect("/signin");
   } else {
     const isSamePassword = bcrypt.compareSync(password, foundUser.password);

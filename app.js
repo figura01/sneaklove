@@ -24,20 +24,20 @@ hbs.registerPartials(__dirname + "/views/partials");
 
 app.use(express.static("public"));
 
-
 app.use(express.json());
-app.use(express.urlencoded({
-  extended: false
-}));
+app.use(
+  express.urlencoded({
+    extended: false,
+  })
+);
 app.use(cookieParser());
-
 
 // SESSION SETUP
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
     cookie: {
-      maxAge: 60000
+      maxAge: 60000,
     }, // in millisec
     store: new MongoStore({
       mongooseConnection: mongoose.connection, // you can store session infos in mongodb :)
