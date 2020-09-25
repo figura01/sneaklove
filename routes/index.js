@@ -31,8 +31,41 @@ router.get("/sneakers/:cat", async (req, res) => {
   });
 });
 
-router.get("/products_add", (req, res) => {
-  res.render("products_add");
+router.get("/products_add", async (req, res, next) => {
+  try {
+    const tag = await Tags.find();
+    res.render("products_add", {
+      tag
+    });
+  } catch (error) {
+    next(error);
+    return error;
+  }
+});
+
+router.post("/tags_add", async (req, res, next) => {
+  console.log("taggggg");
+  try {
+    const newTag = req.body;
+    console.log("TAG CREATION");
+    console.log(newTag);
+    const createdTag = await Tags.create(newTag);
+    res.redirect("/products_add");
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.post("/products_add", async (req, res, next) => {
+  try {
+    const newSneakers = req.body;
+    console.log("SNEAKERS CREATION");
+    console.log(newSneakers);
+    const createdSneakers = await Sneaker.create(newSneakers);
+    res.redirect("/");
+  } catch (error) {
+    next(error);
+  }
 });
 
 router.get("/product-edit/:id", async (req, res, next) => {
@@ -42,7 +75,7 @@ router.get("/product-edit/:id", async (req, res, next) => {
   const sneaker = await Sneaker.findById(req.params.id);
   const tags = await Tag.find({});
   console.log(tags);
-  
+
   tagsAndShose = {
     tags: tags,
     tagShoes: sneaker.id
@@ -60,7 +93,7 @@ router.get("/products_manage", async (req, res, next) => {
 
   const sneakers = await Sneaker.find({});
   const tags = await Tag.find({});
-   
+
   res.render("products_manage", {
     sneakers,
     tags,
