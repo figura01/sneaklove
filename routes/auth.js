@@ -15,7 +15,7 @@ router.post("/signin", async (req, res, next) => {
   console.log(foundUser);
 
   if (!foundUser) {
-    req.flash("warning", "Invalid credentials");
+    req.flash("error", "Invalid credentials");
     res.redirect("/signin");
   } else {
     const isSamePassword = bcrypt.compareSync(password, foundUser.password);
@@ -48,14 +48,13 @@ router.post("/signup", async (req, res, next) => {
     console.log("foundUser: ", foundUser);
     if (foundUser) {
       console.log("user touver");
-
-      res.render("/signup", {
-        msg: "Email already taken",
-      });
+      req.flash("error", "Email already taken");
+      res.redirect("/signup");
     } else {
       const hashedPassword = bcrypt.hashSync(newUser.password, salt);
       newUser.password = hashedPassword;
       const user = await User.create(newUser);
+      req.flash("success", "Register done");
       res.redirect("/signin");
     }
   } catch (error) {
