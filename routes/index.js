@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const Sneaker = require("../models/Sneaker");
+const Tags = require("../models/Tag");
+const { route } = require("./auth");
 
 router.get("/", (req, res) => {
   res.render("index");
@@ -30,8 +32,39 @@ router.get("/sneakers/:cat", async (req, res) => {
   });
 });
 
-router.get("/products_add", (req, res) => {
-  res.render("products_add");
+router.get("/products_add", async (req, res, next) => {
+  try {
+    const tag = await Tags.find();
+    res.render("products_add", { tag });
+  } catch (error) {
+    next(error);
+    return error;
+  }
+});
+
+router.post("/tags_add", async (req, res, next) => {
+  console.log("taggggg");
+  try {
+    const newTag = req.body;
+    console.log("TAG CREATION");
+    console.log(newTag);
+    const createdTag = await Tags.create(newTag);
+    res.redirect("/products_add");
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.post("/products_add", async (req, res, next) => {
+  try {
+    const newSneakers = req.body;
+    console.log("SNEAKERS CREATION");
+    console.log(newSneakers);
+    const createdSneakers = await Sneaker.create(newSneakers);
+    res.redirect("/");
+  } catch (error) {
+    next(error);
+  }
 });
 
 router.get("/products_manage", (req, res) => {
@@ -55,7 +88,7 @@ router.get("/signup", (req, res) => {
 });
 
 router.get("/one-product/:id", (req, res) => {
-  res.send("baz");
+  res.render("one_product");
 });
 
 module.exports = router;
