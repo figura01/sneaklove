@@ -11,24 +11,31 @@ router.get("/home", (req, res) => {
 });
 
 router.get("/sneakers/:cat", async (req, res) => {
-
-  console.log('paramas', req.params.cat);
+  console.log("paramas", req.params.cat);
 
   const parmaCategorie = req.params.cat;
   var sneakers;
-  if (parmaCategorie === 'collection') {
+  if (parmaCategorie === "collection") {
     sneakers = await Sneaker.find({});
   } else {
     sneakers = await Sneaker.find({
-      category: `${parmaCategorie}`
+      category: `${parmaCategorie}`,
     });
   }
 
   console.log(sneakers);
   res.render("products.hbs", {
     sneakers,
-    category: req.params.cat
+    category: req.params.cat,
   });
+});
+
+router.get("/products_add", (req, res) => {
+  res.render("products_add");
+});
+
+router.get("/products_manage", (req, res) => {
+  res.render("products_manage");
 });
 
 router.get("/signup", (req, res) => {
