@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Sneaker = require("../models/Sneaker");
+const Tag = require("../models/Tag");
 
 router.get("/", (req, res) => {
   res.render("index");
@@ -34,8 +35,36 @@ router.get("/products_add", (req, res) => {
   res.render("products_add");
 });
 
-router.get("/products_manage", (req, res) => {
-  res.render("products_manage");
+router.get("/product-edit/:id", async (req, res, next) => {
+  console.log('product edit GET');
+
+  console.log(req.params.id);
+  const sneaker = await Sneaker.findById(req.params.id);
+  const tags = await Tag.find({});
+  console.log(tags);
+  
+  tagsAndShose = {
+    tags: tags,
+    tagShoes: sneaker.id
+  };
+
+  console.log(sneaker);
+  res.render("product_edit", {
+    sneaker,
+    tagsAndShose
+  });
+});
+
+
+router.get("/products_manage", async (req, res, next) => {
+
+  const sneakers = await Sneaker.find({});
+  const tags = await Tag.find({});
+   
+  res.render("products_manage", {
+    sneakers,
+    tags,
+  });
 });
 
 router.get("/signup", (req, res) => {
@@ -55,7 +84,7 @@ router.get("/signup", (req, res) => {
 });
 
 router.get("/one-product/:id", (req, res) => {
-  res.send("baz");
+  res.render("one_product");
 });
 
 module.exports = router;

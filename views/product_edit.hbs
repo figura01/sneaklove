@@ -3,7 +3,8 @@
     <h3 class="form-title"> Edit Sneaker</h3>
     <div class="form-item-wrapper flexed-item">
       <label for="sneaker-name" class="label-name label">Model name</label>
-      <input id="sneaker-name" type="text" class="input-text input" placeholder="Nike Air Max 90" value="{{sneaker.name}}">
+      <input id="sneaker-name" type="text" class="input-text input" placeholder="Nike Air Max 90"
+        value="{{sneaker.name}}">
     </div>
     <div class="form-item-wrapper flexed-item">
       <label for="sneaker-ref" class="label-ref label">Réf.</label>
@@ -15,7 +16,8 @@
     </div>
     <div class="form-item-wrapper flexed-item">
       <label for="sneaker-descr" class="label-descr label">Description</label>
-      <input id="sneaker-descr" type="text" class="input-text input" placeholder="The better sneakers to run" value="{{sneaker.description}}">
+      <input id="sneaker-descr" type="text" class="input-text input" placeholder="The better sneakers to run"
+        value="{{sneaker.description}}">
     </div>
     <div class="form-item-wrapper flexed-item">
       <label for="sneaker-price" class="label-price label">Price</label>
@@ -23,16 +25,24 @@
     </div>
     <div class="form-item-wrapper flexed-item">
       <label for="sneaker-main-cat" class="label-main-cat label">Main category</label>
-      <select id="main_category" class="select" required>
+      <select id="main_category" class="select" value={{sneaker.category}} required>
+        {{#if sneaker.category}}
+        <option value="{{sneaker.category}}">{{sneaker.category}}</option>
+        {{else}}
         <option value="-1" disabled selected>Choose main Category...</option>
+        {{/if}}
+
         <option value="men">Men</option>
         <option value="women">Women</option>
         <option value="kids">Kids</option>
       </select>
     </div>
     <div class="form-item-wrapper flexed-item">
+      {{sneaker.id_tag}}
+      {{tags}}
       <label class="label">Tags</label>
-      {{> form_tags_select}}
+
+      {{> form_tags_select tagsAndShose}}
     </div>
     <button class="button-primary add-sneaker-btn">Edit this sneaker</button>
   </form>

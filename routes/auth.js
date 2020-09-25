@@ -6,6 +6,10 @@ const exposeFlashMessage = require("../middlewares/exposeFlashMessage");
 
 const salt = 10;
 
+router.get("/signin", (req, res, next) => {
+  res.render("signin");
+});
+
 router.post("/signin", async (req, res, next) => {
   console.log("sign in", req.body);
   const {
