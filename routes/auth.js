@@ -2,12 +2,11 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
+const exposeFlashMessage = require("../middlewares/exposeFlashMessage");
+
 const salt = 10;
 
-router.get("/signin", async (req, res, next) => {
-  res.render("signin.hbs");
-});
-
+<<<<<<< HEAD
 router.post("auth/signin", async (req, res, next) => {
 
   console.log('sign in', req.body);
@@ -15,22 +14,27 @@ router.post("auth/signin", async (req, res, next) => {
     email,
     password
   } = req.body;
+=======
+router.post("/signin", async (req, res, next) => {
+  console.log("sign in", req.body);
+  const { email, password } = req.body;
+>>>>>>> cb6f1aa32231c4cf095af1341a099df60d3471cf
   const foundUser = await User.findOne({
-    email: email
+    email: email,
   });
   console.log(foundUser);
 
   if (!foundUser) {
-    req.flash("error", "Invalid credentials");
-    res.redirect("signin.hbs");
+    req.flash("warning", "Invalid credentials");
+    res.redirect("/signin");
   } else {
     const isSamePassword = bcrypt.compareSync(password, foundUser.password);
     if (!isSamePassword) {
       req.flash("error", "Invalid Credentials");
-      res.redirect("signin.hbs");
+      res.redirect("signin");
     } else {
       const userDocument = {
-        ...foundUser
+        ...foundUser,
       };
       console.log(userDocument);
       const userObject = foundUser.toObject();
@@ -83,11 +87,11 @@ router.post("/signup", async (req, res, next) => {
   try {
     console.log('test de trouver un user')
     const newUser = req.body;
-    console.log('newUser: ', newUser);
+    console.log("newUser: ", newUser);
     const foundUser = await User.findOne({
-      email: newUser.email
+      email: newUser.email,
     });
-    console.log('foundUser: ', foundUser);
+    console.log("foundUser: ", foundUser);
     if (foundUser) {
       console.log('user touver');
       //req.flash("error", "Invalid credentials");
@@ -97,6 +101,9 @@ router.post("/signup", async (req, res, next) => {
         msg: "Email already taken"
       });
 
+      res.render("/signup", {
+        msg: "Email already taken",
+      });
     } else {
       console.log('test de create user');
       const hashedPassword = bcrypt.hashSync(newUser.password, salt);
@@ -112,13 +119,11 @@ router.post("/signup", async (req, res, next) => {
   */
 });
 
-// router.get("/logout", async (req, res, next) => {
-//   console.log(req.session.currentUser);
-//   req.session.destroy(function (err) {
-//     // cannot access session here
-//     // console.log(req.session.currentUser);
-//     res.redirect("signin.hbs");
-//   });
-// });
+router.get("/logout", async (req, res, next) => {
+  console.log(req.session.currentUser);
+  req.session.destroy(function (err) {
+    res.redirect("/");
+  });
+});
 
 module.exports = router;
