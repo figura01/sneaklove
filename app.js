@@ -53,6 +53,7 @@ app.locals.site_url = process.env.SITE_URL;
 
 app.use(flash());
 
+
 // CUSTOM MIDDLEWARES
 
 if (dev_mode === true) {
