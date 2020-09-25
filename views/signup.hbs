@@ -3,6 +3,7 @@
     <h1 class="form-title">Start your SneakLove journey</h1>
     <p class="form-subtitle">Enjoy yourself and be comfortable </p>
   </header>
+  {{msg}}
   {{#if msg}}
   <p class="message {{msg.status}}">{{msg.text}}</p>
   {{/if}}
@@ -27,8 +28,10 @@
       <input id="password" name="password" type="password" class="input-text input" placeholder="••••••" required
         value="1234">
     </div>
+    <p class="error">{{error}}</p>
     <button class="button-primary white">Create Account</button>
+    
   </form>
-    {{error}}
+
   <p class="form-sub-infos">Already have an account ? <a href="/signin" class="button-link-form">Sign In</a></p>
 </section>

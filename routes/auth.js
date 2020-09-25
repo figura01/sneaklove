@@ -49,16 +49,19 @@ router.post("/signup", async (req, res, next) => {
     const foundUser = await User.findOne({
       email: newUser.email
     });
-    console.log(foundUser);
+    console.log('foundUser: ', foundUser);
     if (foundUser) {
-      res.render("signup", {
-        error: "Email already taken"
+      console.log('user touver');
+      
+      res.render("/auth/signup", {
+        msg: "Email already taken"
       });
+
     } else {
       const hashedPassword = bcrypt.hashSync(newUser.password, salt);
       newUser.password = hashedPassword;
       const user = await User.create(newUser);
-      res.redirect("signin");
+      res.redirect("auth/signin");
     }
   } catch (error) {
     next(error);
